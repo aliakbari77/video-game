@@ -17,10 +17,9 @@ import gamesData from "../data/games-data";
 
 interface Props {
 	selectedGenre: string;
-	onChangeGenre: (genre: string) => void;
 }
 
-const MainGame = ({ selectedGenre, onChangeGenre }: Props) => {
+const MainGame = ({ selectedGenre }: Props) => {
 	const { results: platforms } = platformsData;
 	const { results: games } = gamesData;
 	const { colorMode, setColorMode } = useColorMode();
@@ -28,7 +27,7 @@ const MainGame = ({ selectedGenre, onChangeGenre }: Props) => {
 	return (
 		<>
 			<Heading color={colorMode === "dark" ? "white" : "black"}>
-				{selectedGenre} + Games
+				{selectedGenre} Games
 			</Heading>
 			<Box display="flex" alignItems={"center"} paddingTop={8} gap={10}>
 				<Box>
@@ -38,7 +37,7 @@ const MainGame = ({ selectedGenre, onChangeGenre }: Props) => {
 						</MenuButton>
 						<MenuList>
 							{platforms.map((platform) => (
-								<MenuItem onClick={() => onChangeGenre(platform.name)}>{platform.name}</MenuItem>
+								<MenuItem>{platform.name}</MenuItem>
 							))}
 						</MenuList>
 					</Menu>

@@ -30,10 +30,10 @@ const App = () => {
 					<TopBar />
 				</GridItem>
 				<GridItem pl="2" area={"nav"} paddingTop={8}>
-					<SideBar />
+					<SideBar onChangeGenre={handleChangeGenre}/>
 				</GridItem>
 				<GridItem pl="2" area={"main"} paddingTop={8}>
-					<MainGame selectedGenre={selectedGenre} onChangeGenre={handleChangeGenre}/>
+					<MainGame selectedGenre={selectedGenre}/>
 				</GridItem>
 			</Grid>
 		</ChakraProvider>

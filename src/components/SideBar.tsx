@@ -13,7 +13,11 @@ import {
 } from "@chakra-ui/react";
 import genresData from "../data/genres-data";
 
-const SideBar = () => {
+interface Props {
+	onChangeGenre: (genre: string) => void;
+}
+
+const SideBar = ({ onChangeGenre }: Props) => {
 	const { results: genres } = genresData;
 	const { colorMode, setColorMode } = useColorMode();
 
@@ -37,6 +41,7 @@ const SideBar = () => {
 							/>
 							<Link
 								color={colorMode === "dark" ? "white" : "black"}
+								onClick={() => onChangeGenre(genre.name)}
 							>
 								{genre.name}
 							</Link>
