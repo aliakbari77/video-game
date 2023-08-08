@@ -5,7 +5,7 @@ import SideBar from "./components/SideBar";
 import MainGame from "./components/MainGame";
 
 const App = () => {
-	const [selectedGenre, setGenre] = useState("Action Game");
+	const [selectedGenre, setGenre] = useState("Action");
 
 	const handleChangeGenre = (genre: string) => {
 		setGenre(genre)

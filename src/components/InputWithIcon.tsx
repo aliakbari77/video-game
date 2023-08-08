@@ -4,15 +4,17 @@ import {
 	InputLeftElement,
 	Input,
 	InputRightElement,
+	useColorMode,
 } from "@chakra-ui/react";
 import { BsSearch } from "react-icons/bs";
 
 const InputWithIcon = () => {
+	const {colorMode, setColorMode} = useColorMode()
 	return (
 		<Stack spacing={4} w={"100%"}>
 			<InputGroup>
 				<InputLeftElement pointerEvents="none">
-					<BsSearch color="gray.300" />
+					<BsSearch color={colorMode === "dark" ? "white" : "black"} />
 				</InputLeftElement>
 				<Input
 					type="tel"

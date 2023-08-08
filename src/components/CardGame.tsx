@@ -48,13 +48,17 @@ const CardGame = ({
 					/>
 					<Stack mt="6" spacing="3">
 						<Stack ml={2} direction={"row"}>
-							{platforms.map((item) => (
-								<p key={item.platform.id}>
-									{item.platform.name === "PC" && (
-										<AiFillWindows />
-									)}
-								</p>
-							))}
+							{platforms.map((item) => {
+								if (item.platform.name === "PC") {
+									return (
+										<p key={item.platform.id}>
+											{item.platform.name === "PC" && (
+												<AiFillWindows />
+											)}
+										</p>
+									);
+								}
+							})}
 							<Badge colorScheme="green">{metacritic}</Badge>
 						</Stack>
 						<Heading size="md" p={2}>
