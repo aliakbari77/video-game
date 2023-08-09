@@ -23,6 +23,7 @@ interface Props {
 			name: string;
 		};
 	}[];
+	isLoading: boolean;
 }
 
 const CardGame = ({
@@ -31,14 +32,14 @@ const CardGame = ({
 	metacritic,
 	background_image,
 	platforms,
+	isLoading
 }: Props) => {
 	// const { results: games } = gamesData;
 
 	console.log(platforms);
 
 	return (
-		<>
-			<Card maxW="sm">
+		<>			<Card maxW="sm">
 				<CardBody p={0} pb={4} borderRadius={5}>
 					<Image
 						src={background_image}

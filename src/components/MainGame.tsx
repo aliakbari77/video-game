@@ -10,19 +10,50 @@ import {
 	MenuList,
 	useColorMode,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import platformsData from "../data/platforms-data";
 import CardGame from "./CardGame";
-import gamesData from "../data/games-data";
+// import gamesData from "../data/games-data";
+import axios from "axios";
 
 interface Props {
 	selectedGenre: string;
 }
 
+interface Games {
+	id: number;
+	name: string;
+	background_image: string;
+	metacritic: number;
+	platforms: {
+		platform: {
+			id: number;
+			name: string;
+		};
+	}[];
+}
+
 const MainGame = ({ selectedGenre }: Props) => {
 	const { results: platforms } = platformsData;
-	const { results: games } = gamesData;
+	// const { results: games } = gamesData;
 	const { colorMode, setColorMode } = useColorMode();
+	const [games, setGames] = useState<Games[]>([]);
+	const [error, setError] = useState("");
+	const [isLoading, setLoading] = useState(false);
+
+	useEffect(() => {
+		setLoading(true);
+		axios
+			.get("http://127.0.0.1:8000/")
+			.then((res) => {
+				setGames(res.data.results);
+				setLoading(false);
+			})
+			.catch((err) => {
+				setError(err.message);
+				setLoading(false);
+			});
+	}, []);
 
 	return (
 		<>
@@ -65,6 +96,7 @@ const MainGame = ({ selectedGenre }: Props) => {
 						background_image={game.background_image}
 						metacritic={game.metacritic}
 						platforms={game.platforms}
+						isLoading={isLoading}
 					/>
 				))}
 			</Grid>
