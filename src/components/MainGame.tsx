@@ -2,12 +2,19 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
+  Card,
+  CardBody,
+  Center,
   Grid,
   Heading,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
+  Skeleton,
+  SkeletonCircle,
+  SkeletonText,
+  Stack,
   useColorMode,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
@@ -103,6 +110,46 @@ const MainGame = ({ selectedGenre }: Props) => {
           </Menu>
         </Box>
       </Box>
+      {isLoading && (
+        <Grid templateColumns={"repeat(3, 1fr)"} gap={4}>
+          <Card mt={4} height={300}>
+            <CardBody p={0} borderRadius={5}>
+              <Center padding={4}>
+                <Box width={"100%"} textAlign={"center"}>
+                  <SkeletonCircle size={"20"} />
+                  <SkeletonText mt={6} noOfLines={1} skeletonHeight={6} />
+                  <SkeletonText mt={6} noOfLines={1} skeletonHeight={6} />
+                  <SkeletonText mt={6} noOfLines={1} skeletonHeight={6} />
+                </Box>
+              </Center>
+            </CardBody>
+          </Card>
+          <Card mt={4}>
+            <CardBody p={0} borderRadius={5}>
+              <Center padding={4}>
+                <Box width={"100%"} textAlign={"center"}>
+                  <SkeletonCircle size={"20"} />
+                  <SkeletonText mt={6} noOfLines={1} skeletonHeight={6} />
+                  <SkeletonText mt={6} noOfLines={1} skeletonHeight={6} />
+                  <SkeletonText mt={6} noOfLines={1} skeletonHeight={6} />
+                </Box>
+              </Center>
+            </CardBody>
+          </Card>
+          <Card mt={4}>
+            <CardBody p={0} borderRadius={5}>
+              <Center padding={4}>
+                <Box width={"100%"} textAlign={"center"}>
+                  <SkeletonCircle size={"20"} />
+                  <SkeletonText mt={6} noOfLines={1} skeletonHeight={6} />
+                  <SkeletonText mt={6} noOfLines={1} skeletonHeight={6} />
+                  <SkeletonText mt={6} noOfLines={1} skeletonHeight={6} />
+                </Box>
+              </Center>
+            </CardBody>
+          </Card>
+        </Grid>
+      )}
       <Grid templateColumns={"repeat(3, 1fr)"} paddingTop={4} gap={4}>
         {visibleGames.map((game) => (
           <CardGame
@@ -112,7 +159,6 @@ const MainGame = ({ selectedGenre }: Props) => {
             background_image={game.background_image}
             metacritic={game.metacritic}
             platforms={game.platforms}
-            isLoading={isLoading}
           />
         ))}
       </Grid>

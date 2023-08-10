@@ -26,7 +26,6 @@ interface Props {
       name: string;
     };
   }[];
-  isLoading: boolean;
 }
 
 const CardGame = ({
@@ -35,38 +34,9 @@ const CardGame = ({
   metacritic,
   background_image,
   platforms,
-  isLoading = true,
 }: Props) => {
   return (
     <>
-      {isLoading && (
-        <Stack>
-          <Box display="flex" alignItems={"center"}>
-            <SkeletonCircle size="8" />
-            <Skeleton height="8px" marginLeft={4}>
-              <Box width={24} height={8} marginLeft={3} />
-            </Skeleton>
-          </Box>
-          <Box display="flex" alignItems={"center"}>
-            <SkeletonCircle size="8" />
-            <Skeleton height="8px" marginLeft={4}>
-              <Box width={24} height={8} marginLeft={3} />
-            </Skeleton>
-          </Box>
-          <Box display="flex" alignItems={"center"}>
-            <SkeletonCircle size="8" />
-            <Skeleton height="8px" marginLeft={4}>
-              <Box width={24} height={8} marginLeft={3} />
-            </Skeleton>
-          </Box>
-          <Box display="flex" alignItems={"center"}>
-            <SkeletonCircle size="8" />
-            <Skeleton height="8px" marginLeft={4}>
-              <Box width={24} height={8} marginLeft={3} />
-            </Skeleton>
-          </Box>
-        </Stack>
-      )}
       <Card maxW="sm">
         <CardBody p={0} pb={4} borderRadius={5}>
           <Image
