@@ -80,8 +80,6 @@ const MainGame = ({ selectedGenre, searchValue }: Props) => {
       });
   }, []);
 
-
-
   const filterByGenreName = (data: Games[], genreName: string) => {
     return data.filter((game) => {
       return game.genres.some((genre) => genre.name === genreName);
@@ -117,7 +115,9 @@ const MainGame = ({ selectedGenre, searchValue }: Props) => {
 
   const sortedGames = visibleGames2.sort(dynamicSort(orderBy));
 
-  const filterByName = searchValue ? sortedGames.filter(item => item.name.includes(searchValue)) : sortedGames
+  const filterByName = searchValue
+    ? sortedGames.filter((item) => item.name.includes(searchValue))
+    : sortedGames;
 
   return (
     <>
