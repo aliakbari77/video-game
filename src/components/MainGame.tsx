@@ -122,13 +122,13 @@ const MainGame = ({ selectedGenre }: Props) => {
         <Box>
           <Menu>
             <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-              {selectedPlatform ? selectedPlatform : "Platforms"}
+              {selectedPlatform ? "Platform: " +  selectedPlatform : "Platforms"}
             </MenuButton>
             <MenuList>
               {selectedPlatform && (
-                <Text color={"tomato"} onClick={() => setPlatform("")}>
+                <MenuItem color={"tomato"} onClick={() => setPlatform("")}>
                   Clear
-                </Text>
+                </MenuItem>
               )}
               <MenuItem
                 color={colorMode == "dark" ? "white" : "black"}
