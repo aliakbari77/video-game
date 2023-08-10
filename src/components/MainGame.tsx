@@ -94,7 +94,9 @@ const MainGame = ({ selectedGenre }: Props) => {
     ? filterByGenreName(games, selectedGenre)
     : games;
 
-    const visibleGames2 = selectedPlatform ? filterByPlatformName(visibleGames, selectedPlatform) : visibleGames
+  const visibleGames2 = selectedPlatform
+    ? filterByPlatformName(visibleGames, selectedPlatform)
+    : visibleGames;
 
   const dynamicSort = (key: keyof Games) => (a: Games, b: Games) => {
     const aValue = a[key];
@@ -122,7 +124,7 @@ const MainGame = ({ selectedGenre }: Props) => {
         <Box>
           <Menu>
             <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-              {selectedPlatform ? "Platform: " +  selectedPlatform : "Platforms"}
+              {selectedPlatform ? "Platform: " + selectedPlatform : "Platforms"}
             </MenuButton>
             <MenuList>
               {selectedPlatform && (
@@ -187,17 +189,34 @@ const MainGame = ({ selectedGenre }: Props) => {
               Orderby: {orderBy}
             </MenuButton>
             <MenuList>
-              <MenuItem onClick={() => setOrderBy("updated")}>
+              <MenuItem
+                onClick={() => setOrderBy("updated")}
+                color={colorMode == "dark" ? "white" : "black"}
+              >
                 Date added
               </MenuItem>
-              <MenuItem onClick={() => setOrderBy("name")}>Name</MenuItem>
-              <MenuItem onClick={() => setOrderBy("released")}>
+              <MenuItem
+                onClick={() => setOrderBy("name")}
+                color={colorMode == "dark" ? "white" : "black"}
+              >
+                Name
+              </MenuItem>
+              <MenuItem
+                onClick={() => setOrderBy("released")}
+                color={colorMode == "dark" ? "white" : "black"}
+              >
                 Release date
               </MenuItem>
-              <MenuItem onClick={() => setOrderBy("added")}>
+              <MenuItem
+                onClick={() => setOrderBy("added")}
+                color={colorMode == "dark" ? "white" : "black"}
+              >
                 Popularity
               </MenuItem>
-              <MenuItem onClick={() => setOrderBy("rating")}>
+              <MenuItem
+                onClick={() => setOrderBy("rating")}
+                color={colorMode == "dark" ? "white" : "black"}
+              >
                 Average rating
               </MenuItem>
             </MenuList>

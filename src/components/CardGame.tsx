@@ -13,7 +13,10 @@ import {
   SkeletonCircle,
 } from "@chakra-ui/react";
 import gamesData from "../data/games-data";
-import { AiFillWindows } from "react-icons/ai";
+import { BsWindows, BsApple } from "react-icons/bs";
+import { FaXbox, FaPlaystation, FaLinux } from "react-icons/fa";
+import { AiFillAndroid } from "react-icons/ai";
+import { SiNintendo, SiApplearcade } from "react-icons/si";
 
 interface Props {
   id: number;
@@ -51,7 +54,53 @@ const CardGame = ({
                 if (item.platform.name === "PC") {
                   return (
                     <p key={item.platform.id}>
-                      {item.platform.name === "PC" && <AiFillWindows />}
+                      {item.platform.name === "PC" && <BsWindows />}
+                    </p>
+                  );
+                } else if (item.platform.name === "Xbox") {
+                  return (
+                    <p key={item.platform.id}>
+                      {item.platform.name === "Xbox" && <FaXbox />}
+                    </p>
+                  );
+                } else if (item.platform.name === "PlayStation") {
+                  return (
+                    <p key={item.platform.id}>
+                      {item.platform.name === "PlayStation" && (
+                        <FaPlaystation />
+                      )}
+                    </p>
+                  );
+                } else if (item.platform.name === "iOS") {
+                  return (
+                    <p key={item.platform.id}>
+                      {item.platform.name === "iOS" && <BsApple />}
+                    </p>
+                  );
+                } else if (item.platform.name === "Android") {
+                  return (
+                    <p key={item.platform.id}>
+                      {item.platform.name === "Android" && <AiFillAndroid />}
+                    </p>
+                  );
+                } else if (item.platform.name === "Linux") {
+                  return (
+                    <p key={item.platform.id}>
+                      {item.platform.name === "Linux" && <FaLinux />}
+                    </p>
+                  );
+                } else if (item.platform.name === "Nintendo") {
+                  return (
+                    <p key={item.platform.id}>
+                      {item.platform.name === "Nintendo" && <SiNintendo />}
+                    </p>
+                  );
+                } else if (item.platform.name === "Apple Macintosh") {
+                  return (
+                    <p key={item.platform.id}>
+                      {item.platform.name === "Apple Macintosh" && (
+                        <SiApplearcade />
+                      )}
                     </p>
                   );
                 }
