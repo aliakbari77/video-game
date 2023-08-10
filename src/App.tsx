@@ -6,9 +6,15 @@ import MainGame from "./components/MainGame";
 
 const App = () => {
 	const [selectedGenre, setGenre] = useState("Action");
+	const [searchValue, setSearchValue] = useState("")
 
 	const handleChangeGenre = (genre: string) => {
 		setGenre(genre)
+	}
+
+	const handleSearch = (searchValue: string) => {
+		console.log(searchValue)
+		setSearchValue(searchValue)
 	}
 
 	return (
@@ -26,13 +32,13 @@ const App = () => {
 				p={8}
 			>
 				<GridItem pl="2" area={"header"}>
-					<TopBar />
+					<TopBar onSearch={handleSearch} />
 				</GridItem>
 				<GridItem pl="2" area={"nav"} paddingTop={8}>
 					<SideBar onChangeGenre={handleChangeGenre}/>
 				</GridItem>
 				<GridItem pl="2" area={"main"} paddingTop={8}>
-					<MainGame selectedGenre={selectedGenre}/>
+					<MainGame selectedGenre={selectedGenre} searchValue={searchValue}/>
 				</GridItem>
 			</Grid>
 		</ChakraProvider>

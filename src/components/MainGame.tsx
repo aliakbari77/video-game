@@ -27,6 +27,7 @@ import axios from "axios";
 
 interface Props {
   selectedGenre: string;
+  searchValue: string;
 }
 
 interface Games {
@@ -54,7 +55,7 @@ interface Games {
   }[];
 }
 
-const MainGame = ({ selectedGenre }: Props) => {
+const MainGame = ({ selectedGenre, searchValue }: Props) => {
   const { results: platforms } = platformsData;
   // const { results: games } = gamesData;
   const { colorMode, setColorMode } = useColorMode();
@@ -79,6 +80,8 @@ const MainGame = ({ selectedGenre }: Props) => {
       });
   }, []);
 
+
+
   const filterByGenreName = (data: Games[], genreName: string) => {
     return data.filter((game) => {
       return game.genres.some((genre) => genre.name === genreName);
@@ -92,8 +95,6 @@ const MainGame = ({ selectedGenre }: Props) => {
       );
     });
   };
-
-  console.log(filterByPlatformName(games, selectedPlatform));
 
   const visibleGames = selectedGenre
     ? filterByGenreName(games, selectedGenre)
@@ -114,11 +115,9 @@ const MainGame = ({ selectedGenre }: Props) => {
     return 0;
   };
 
-  console.log("visible: ", visibleGames);
-
   const sortedGames = visibleGames2.sort(dynamicSort(orderBy));
 
-  console.log("sorted: ", sortedGames);
+  const filterByName = searchValue ? sortedGames.filter(item => item.name.includes(searchValue)) : sortedGames
 
   return (
     <>
@@ -269,7 +268,7 @@ const MainGame = ({ selectedGenre }: Props) => {
         </Grid>
       )}
       <Grid templateColumns={"repeat(3, 1fr)"} paddingTop={4} gap={4}>
-        {sortedGames.map((game) => (
+        {filterByName.map((game) => (
           <CardGame
             key={game.id}
             id={game.id}
