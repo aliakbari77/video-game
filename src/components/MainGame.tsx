@@ -63,11 +63,12 @@ const MainGame = ({ selectedGenre }: Props) => {
   const [isLoading, setLoading] = useState(false);
   const [selectedPlatform, setPlatform] = useState("");
   const [orderBy, setOrderBy] = useState<keyof Games>("name");
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://127.0.0.1:3000/")
+      .get(`http://127.0.0.1:3000/?page=${page}`)
       .then((res) => {
         setGames(res.data.results);
         setLoading(false);
