@@ -48,6 +48,10 @@ interface Games {
   released: string;
   added: number;
   rating: number;
+  ratings: {
+    id: number;
+    title: string;
+  }[];
 }
 
 const MainGame = ({ selectedGenre }: Props) => {
@@ -272,6 +276,7 @@ const MainGame = ({ selectedGenre }: Props) => {
             background_image={game.background_image}
             metacritic={game.metacritic}
             parent_platforms={game.parent_platforms}
+            ratings={game.ratings[0]}
           />
         ))}
       </Grid>

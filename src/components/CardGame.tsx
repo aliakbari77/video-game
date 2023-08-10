@@ -17,6 +17,8 @@ import { BsWindows, BsApple } from "react-icons/bs";
 import { FaXbox, FaPlaystation, FaLinux } from "react-icons/fa";
 import { AiFillAndroid } from "react-icons/ai";
 import { SiNintendo, SiApplearcade } from "react-icons/si";
+import { FiTarget } from "react-icons/fi";
+import { BiLike } from "react-icons/bi";
 
 interface Props {
   id: number;
@@ -29,6 +31,10 @@ interface Props {
       name: string;
     };
   }[];
+  ratings: {
+    id: number;
+    title: string;
+  };
 }
 
 const CardGame = ({
@@ -37,6 +43,7 @@ const CardGame = ({
   metacritic,
   background_image,
   parent_platforms,
+  ratings,
 }: Props) => {
   return (
     <>
@@ -110,6 +117,9 @@ const CardGame = ({
             <Heading size="md" p={2}>
               {name}
             </Heading>
+            <Box marginLeft={2}>
+              {ratings.title === "exceptional" ? <FiTarget /> : <BiLike />}
+            </Box>
           </Stack>
         </CardBody>
       </Card>
