@@ -124,7 +124,13 @@ const MainGame = ({ selectedGenre, searchValue }: Props) => {
       <Heading color={colorMode === "dark" ? "white" : "black"}>
         {selectedGenre} Games
       </Heading>
-      <Box display="flex" alignItems={"center"} paddingTop={8} gap={10}>
+      <Box
+        display="flex"
+        alignItems={"center"}
+        paddingTop={8}
+        gap={10}
+        paddingBottom={8}
+      >
         <Box>
           <Menu>
             <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
