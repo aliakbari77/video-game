@@ -40,7 +40,6 @@ const SideBar = ({ onChangeGenre }: Props) => {
 			.get("http://127.0.0.1:3000/genres")
 			.then((res) => {
 				setGenres(res.data.results);
-				console.log(res.data.results);
 				setLoading(false);
 			})
 			.catch((err) => {
@@ -49,7 +48,6 @@ const SideBar = ({ onChangeGenre }: Props) => {
 			});
 	}, []);
 
-	console.log(genres);
 	return (
 		<>
 			{isLoading ? (

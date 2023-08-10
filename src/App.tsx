@@ -9,7 +9,6 @@ const App = () => {
 
 	const handleChangeGenre = (genre: string) => {
 		setGenre(genre)
-		console.log(genre)
 	}
 
 	return (

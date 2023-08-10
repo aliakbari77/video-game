@@ -20,7 +20,7 @@ interface Props {
   name: string;
   metacritic: number;
   background_image: string;
-  platforms: {
+  parent_platforms: {
     platform: {
       id: number;
       name: string;
@@ -33,7 +33,7 @@ const CardGame = ({
   name,
   metacritic,
   background_image,
-  platforms,
+  parent_platforms,
 }: Props) => {
   return (
     <>
@@ -47,7 +47,7 @@ const CardGame = ({
           />
           <Stack mt="6" spacing="3">
             <Stack ml={2} direction={"row"}>
-              {platforms.map((item) => {
+              {parent_platforms.map((item) => {
                 if (item.platform.name === "PC") {
                   return (
                     <p key={item.platform.id}>
