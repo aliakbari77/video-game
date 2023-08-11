@@ -24,6 +24,7 @@ import platformsData from "../data/platforms-data";
 import CardGame from "./CardGame";
 // import gamesData from "../data/games-data";
 import axios from "axios";
+import CustomMenu from "./CustomMenu";
 
 interface Props {
   selectedGenre: string;
@@ -56,8 +57,6 @@ interface Games {
 }
 
 const MainGame = ({ selectedGenre, searchValue }: Props) => {
-  const { results: platforms } = platformsData;
-  // const { results: games } = gamesData;
   const { colorMode, setColorMode } = useColorMode();
   const [games, setGames] = useState<Games[]>([]);
   const [error, setError] = useState("");
@@ -65,6 +64,23 @@ const MainGame = ({ selectedGenre, searchValue }: Props) => {
   const [selectedPlatform, setPlatform] = useState("");
   const [orderBy, setOrderBy] = useState<keyof Games>("name");
   const [page, setPage] = useState(1);
+  const platforms = [
+    "PC",
+    "PlayStation",
+    "Xbox",
+    "iOS",
+    "Android",
+    "Apple Macintosh",
+    "Linux",
+    "Nintendo",
+  ];
+  const orders = [
+    "Name",
+    "Date added",
+    "Release date",
+    "Popularity",
+    "Average rating",
+  ];
 
   useEffect(() => {
     setLoading(true);
@@ -119,6 +135,20 @@ const MainGame = ({ selectedGenre, searchValue }: Props) => {
     ? sortedGames.filter((item) => item.name.includes(searchValue))
     : sortedGames;
 
+  const handleOrder = (order: string) => {
+    if (order == "Date added") {
+      setOrderBy("updated");
+    } else if (order == "Name" || order == "") {
+      setOrderBy("name");
+    } else if (order == "Release date") {
+      setOrderBy("released");
+    } else if (order == "Popularity") {
+      setOrderBy("added");
+    } else if (order == "Average rating") {
+      setOrderBy("rating");
+    }
+  };
+
   return (
     <>
       <Heading color={colorMode === "dark" ? "white" : "black"}>
@@ -132,105 +162,18 @@ const MainGame = ({ selectedGenre, searchValue }: Props) => {
         paddingBottom={8}
       >
         <Box>
-          <Menu>
-            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-              {selectedPlatform ? "Platform: " + selectedPlatform : "Platforms"}
-            </MenuButton>
-            <MenuList>
-              {selectedPlatform && (
-                <MenuItem color={"tomato"} onClick={() => setPlatform("")}>
-                  Clear
-                </MenuItem>
-              )}
-              <MenuItem
-                color={colorMode == "dark" ? "white" : "black"}
-                onClick={() => setPlatform("PC")}
-              >
-                PC
-              </MenuItem>
-              <MenuItem
-                color={colorMode == "dark" ? "white" : "black"}
-                onClick={() => setPlatform("PlayStation")}
-              >
-                PlayStation
-              </MenuItem>
-              <MenuItem
-                color={colorMode == "dark" ? "white" : "black"}
-                onClick={() => setPlatform("Xbox")}
-              >
-                Xbox
-              </MenuItem>
-              <MenuItem
-                color={colorMode == "dark" ? "white" : "black"}
-                onClick={() => setPlatform("iOS")}
-              >
-                iOS
-              </MenuItem>
-              <MenuItem
-                color={colorMode == "dark" ? "white" : "black"}
-                onClick={() => setPlatform("Android")}
-              >
-                Android
-              </MenuItem>
-              <MenuItem
-                color={colorMode == "dark" ? "white" : "black"}
-                onClick={() => setPlatform("Apple Macintosh")}
-              >
-                Apple Macintosh
-              </MenuItem>
-              <MenuItem
-                color={colorMode == "dark" ? "white" : "black"}
-                onClick={() => setPlatform("Linux")}
-              >
-                Linux
-              </MenuItem>
-              <MenuItem
-                color={colorMode == "dark" ? "white" : "black"}
-                onClick={() => setPlatform("Nintendo")}
-              >
-                Nintendo
-              </MenuItem>
-            </MenuList>
-          </Menu>
+          <CustomMenu
+            selectedItem={selectedPlatform}
+            onChange={setPlatform}
+            items={platforms}
+          />
         </Box>
         <Box>
-          <Menu>
-            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-              Orderby: {orderBy}
-            </MenuButton>
-            <MenuList>
-              <MenuItem
-                onClick={() => setOrderBy("updated")}
-                color={colorMode == "dark" ? "white" : "black"}
-              >
-                Date added
-              </MenuItem>
-              <MenuItem
-                onClick={() => setOrderBy("name")}
-                color={colorMode == "dark" ? "white" : "black"}
-              >
-                Name
-              </MenuItem>
-              <MenuItem
-                onClick={() => setOrderBy("released")}
-                color={colorMode == "dark" ? "white" : "black"}
-              >
-                Release date
-              </MenuItem>
-              <MenuItem
-                onClick={() => setOrderBy("added")}
-                color={colorMode == "dark" ? "white" : "black"}
-              >
-                Popularity
-              </MenuItem>
-              <MenuItem
-                onClick={() => setOrderBy("rating")}
-                color={colorMode == "dark" ? "white" : "black"}
-              >
-                Average rating
-              </MenuItem>
-            </MenuList>
-          </Menu>
+          <CustomMenu
+            selectedItem={orderBy}
+            onChange={handleOrder}
+            items={orders}
+          />
         </Box>
       </Box>
       {isLoading && (
